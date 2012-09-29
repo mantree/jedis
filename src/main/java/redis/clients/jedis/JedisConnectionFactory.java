@@ -1,7 +1,5 @@
 package redis.clients.jedis;
 
-import java.net.URI;
-
 import org.apache.commons.pool.BasePoolableObjectFactory;
 
 public class JedisConnectionFactory extends BasePoolableObjectFactory {
