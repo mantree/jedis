@@ -2848,6 +2848,16 @@ public class BinaryJedis implements BinaryJedisCommands {
 	client.slaveofNoOne();
 	return client.getStatusCodeReply();
     }
+    
+    public List<List<String>> sentinelMasters(){
+    client.sentinelMasters();
+    return client.getMultiMultiBulkReply();
+    }
+
+    public List<String> sentinelMasterFor(String name){
+    client.sentinelMasterAddress(name);
+    return client.getMultiBulkReply();
+    }
 
     /**
      * Retrieve the configuration of a running Redis server. Not all the

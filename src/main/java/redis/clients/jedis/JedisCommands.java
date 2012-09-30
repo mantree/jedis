@@ -190,4 +190,8 @@ public interface JedisCommands {
     Long lpushx(String key, String string);
     
     Long rpushx(String key, String string); 
+    
+    List<List<String>> sentinelMasters();
+    
+    List<String> sentinelMasterFor(String name);
 }

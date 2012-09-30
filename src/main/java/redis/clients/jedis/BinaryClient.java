@@ -2,6 +2,7 @@ package redis.clients.jedis;
 
 import static redis.clients.jedis.Protocol.toByteArray;
 import static redis.clients.jedis.Protocol.Command.*;
+import static redis.clients.jedis.Protocol.SubCommand.*;
 import static redis.clients.jedis.Protocol.Keyword.ENCODING;
 import static redis.clients.jedis.Protocol.Keyword.IDLETIME;
 import static redis.clients.jedis.Protocol.Keyword.LEN;
@@ -23,6 +24,10 @@ import redis.clients.jedis.Protocol.Keyword;
 import redis.clients.util.SafeEncoder;
 
 public class BinaryClient extends Connection {
+	
+	public enum SENTINEL_CMD{
+	}
+	
     public enum LIST_POSITION {
 	BEFORE, AFTER;
 	public final byte[] raw;
@@ -726,6 +731,15 @@ public class BinaryClient extends Connection {
     public void getrange(byte[] key, long startOffset, long endOffset) {
 	sendCommand(GETRANGE, key, toByteArray(startOffset),
 		toByteArray(endOffset));
+    }
+    
+    
+    public void sentinelMasters(){
+    	sendCommand(SENTINEL, MASTERS.raw);
+    }
+    
+    public void sentinelMasterAddress(byte[] name){
+    	sendCommand(SENTINEL, MASTER_ADDRESS.raw, name);
     }
 
     public Long getDB() {

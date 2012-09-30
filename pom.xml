@@ -45,7 +45,7 @@
         </scm>
 
 	<properties>
-		<redis-hosts>localhost:6379,localhost:6380</redis-hosts>
+		<redis-hosts>localhost:6379,localhost:6380,localhost:26379</redis-hosts>
 	</properties>
 
 	<dependencies>

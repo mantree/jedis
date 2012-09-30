@@ -2,7 +2,9 @@ package redis.clients.jedis;
 
 import static redis.clients.jedis.Protocol.toByteArray;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -702,5 +704,13 @@ public class Client extends BinaryClient implements Commands {
 
     public void objectEncoding(String key) {
 	objectEncoding(SafeEncoder.encode(key));
+    }
+    
+    public void sentinelMasters(){
+    super.sentinelMasters();
+    }
+    
+    public void sentinelMasterAddress(String name){
+    sentinelMasterAddress(SafeEncoder.encode(name));
     }
 }

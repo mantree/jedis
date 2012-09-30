@@ -483,4 +483,12 @@ public class ShardedJedis extends BinaryShardedJedis implements JedisCommands {
 	Jedis j = getShard(key);
 	return j.linsert(key, where, pivot, value);
     }
+
+	public List<List<String>> sentinelMasters() {
+		throw new UnsupportedOperationException();
+	}
+
+	public List<String> sentinelMasterFor(String name) {
+		throw new UnsupportedOperationException();
+	}
 }

@@ -21,8 +21,15 @@ public class JedisConnectionFactory extends BasePoolableObjectFactory {
 	}
 
 	public Object makeObject() throws Exception {
-		final Jedis jedis = new Jedis(this.host, this.port, this.timeout);
+		return makeConnection(this.host, this.port, this.timeout);
+	}
 
+	protected Jedis makeConnection(String h, int p){
+		return makeConnection(h, p, timeout);
+	}
+	
+	protected Jedis makeConnection(String h, int p, int t){
+		final Jedis jedis = new Jedis(h, p, t);
 		jedis.connect();
 		if (null != this.password) {
 			jedis.auth(this.password);
@@ -30,9 +37,9 @@ public class JedisConnectionFactory extends BasePoolableObjectFactory {
 		if (database != 0) {
 			jedis.select(database);
 		}
-
-		return jedis;
+		return jedis;		
 	}
+	
 
 	public void destroyObject(final Object obj) throws Exception {
 		if (obj instanceof Jedis) {

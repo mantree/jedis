@@ -54,6 +54,31 @@ public class BuilderFactory {
         }
 
     };
+    
+    public static final Builder<List<List<String>>> LIST_STRING_LIST = new Builder<List<List<String>>>() {
+        @SuppressWarnings("unchecked")
+        public List<List<String>> build(Object data) {
+            if (null == data) {
+                return null;
+            }
+            List<List<byte[]>> l = (List<List<byte[]>>) data;
+            final ArrayList<List<String>> result = new ArrayList<List<String>>(l.size());
+            for (final List<byte[]> barray : l) {
+                if (barray == null) {
+                    result.add(null);
+                } else {
+                    result.add(STRING_LIST.build(barray));
+                }
+            }
+            return result;
+        }
+
+        public String toString() {
+            return "List<String>";
+        }
+
+    };
+    
     public static final Builder<List<String>> STRING_LIST = new Builder<List<String>>() {
         @SuppressWarnings("unchecked")
         public List<String> build(Object data) {

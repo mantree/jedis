@@ -7,7 +7,7 @@ import redis.clients.jedis.Protocol;
 
 public class HostAndPortUtil {
     private static List<HostAndPort> hostAndPortList = new ArrayList<HostAndPortUtil.HostAndPort>(
-            2);
+            3);
 
     static {
         final HostAndPort defaulthnp1 = new HostAndPort();
@@ -19,6 +19,11 @@ public class HostAndPortUtil {
         defaulthnp2.host = "localhost";
         defaulthnp2.port = Protocol.DEFAULT_PORT + 1;
         hostAndPortList.add(defaulthnp2);
+
+        final HostAndPort defaulthnp3 = new HostAndPort();
+        defaulthnp3.host = "localhost";
+        defaulthnp3.port = Protocol.DEFAULT_SENTINEL_PORT;
+        hostAndPortList.add(defaulthnp3);
 
         final String envHosts = System.getProperty("redis-hosts");
         if (null != envHosts && 0 < envHosts.length()) {

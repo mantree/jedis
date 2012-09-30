@@ -195,6 +195,10 @@ public class Connection {
         return BuilderFactory.STRING_LIST.build(getBinaryMultiBulkReply());
     }
 
+    public List<List<String>> getMultiMultiBulkReply() {
+        return BuilderFactory.LIST_STRING_LIST.build(getBinaryMultiBulkReply());
+    }
+
     @SuppressWarnings("unchecked")
     public List<byte[]> getBinaryMultiBulkReply() {
         flush();
@@ -239,4 +243,5 @@ public class Connection {
         pipelinedCommands--;
         return Protocol.read(inputStream);
     }
+    
 }
